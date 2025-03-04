@@ -1,7 +1,6 @@
 const express = require('express');
 const axios = require('axios');
 const app = express();
-const PORT = 3000; // PORT 端口号
 
 async function getBingImages(n = 8) {
     const url = `https://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=${n}&mkt=zh-CN`;
@@ -41,4 +40,5 @@ app.get('/today_UHD', (req, res) => handleRequest(res, { days: 1, size: 'UHD' })
 app.get('/random_302_:size', (req, res) => handleRequest(res, { redirect: true, size: req.params.size }));
 app.get('/today_302_:size', (req, res) => handleRequest(res, { days: 1, redirect: true, size: req.params.size }));
 
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+// 导出 app
+module.exports = app;
